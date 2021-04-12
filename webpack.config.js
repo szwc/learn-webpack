@@ -14,7 +14,7 @@ module.exports = {
       rules:[
           {
               test:/\.css$/,
-              use:['style-loader','css-loader']
+              // use:['style-loader','css-loader']
             // use:[
             //     'style-loader',
             //     {
@@ -23,14 +23,18 @@ module.exports = {
             //         }
             //     }
             // ]
-            // use:ExtractTextPlugin.extract({
-            //     fallback: "style-loader",
-            //     use:'css-loader'
-            // })
+            use:ExtractTextPlugin.extract({
+                fallback: "style-loader",
+                use:'css-loader'
+            })
           }
       ]
   },
   plugins:[
-        // new ExtractTextPlugin('style.css')
+        new ExtractTextPlugin({
+          // 从 .js 文件中提取出来的 .css 文件的名称
+          // filename: `[name]_[contenthash:8].css`,
+          filename: `first.css`,
+        })
     ]
 };

@@ -24,5 +24,7 @@ npm i -D webpack@beta
 
 Plugin 是用来扩展 Webpack 功能的，通过在构建流程里注入钩子实现，它给 Webpack 带来了很大的灵活性。
 
+## DevServer
+npm i -D webpack-dev-server
 ## 参考
 
