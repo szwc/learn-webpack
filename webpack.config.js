@@ -1,7 +1,10 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+// const HotModuleReplacementPlugin = require('')
+const webpack = require('webpack')
 
 module.exports = {
+  // context:path.resolve(__dirname,'app'),
   // JavaScript 执行入口文件
   entry: './main.js',
   output: {
@@ -9,6 +12,10 @@ module.exports = {
     filename: 'bundle.js',
     // 输出文件都放到 dist 目录下
     path: path.resolve(__dirname, './dist'),
+  },
+  resolve:{
+    // 先尝试 ts 后缀的 TypeScript 源码文件
+    extensions:['.ts','.js']
   },
   module:{
       rules:[
@@ -27,14 +34,37 @@ module.exports = {
                 fallback: "style-loader",
                 use:'css-loader'
             })
+          },
+          {
+            test:/\.js/,
+            exclude: '/(node_modules)/',
+            // use:['babel-loader'],
+            loader:'babel-loader',
+            // Module build failed: Error: Couldn't find preset "@babel/preset-env" relative to directory "D:\\myown\\learn-webpack\\node_modules\\css-loader"
+            options: {
+              presets: ['@babel/preset-env'],
+            }
+          },
+          {
+            test:/\.ts$/,
+            loader:'ts-loader'
+          },
+          {
+            test:/\.scss$/,
+            use:['style-loader','css-loader','sass-loader']
           }
       ]
   },
   plugins:[
-        new ExtractTextPlugin({
-          // 从 .js 文件中提取出来的 .css 文件的名称
-          // filename: `[name]_[contenthash:8].css`,
-          filename: `first.css`,
-        })
-    ]
+      new ExtractTextPlugin({
+        // 从 .js 文件中提取出来的 .css 文件的名称
+        // filename: `[name]_[contenthash:8].css`,
+        filename: `first.css`,
+      }),
+      new webpack.HotModuleReplacementPlugin()
+  ],
+  devServer:{
+    hot:true,
+    inline:true
+  }
 };

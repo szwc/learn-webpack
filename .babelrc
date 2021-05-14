@@ -1,0 +1,21 @@
+{
+    "plugins": [
+      [
+        "@babel/plugin-transform-runtime"
+        // The 'polyfill' option has been removed. The @babel/runtime module now skips polyfilling by default
+        // {
+        //   "polyfill": false //
+        // }
+      ]
+     ],
+    "presets": [
+      [
+        // "env",
+        "@babel/preset-env",
+        // "babel-preset-env",
+        {
+          "modules": false
+        }
+      ]
+    ]
+  }
