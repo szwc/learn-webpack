@@ -1,2 +1,2 @@
-console.log('entry context test sfd sd dsfsdff');
-import {Animal} from "./Animal";
+console.log("entry context test sfd sd dsfsdff");
+import { Animal } from "./Animal";
