@@ -3,9 +3,19 @@
   "version": "1.0.0",
   "description": "learn",
   "main": "main.js",
-  "dependencies": {},
+  "dependencies": {
+    "ant-design-vue": "^2.2.8",
+    "lodash": "^4.17.21",
+    "vue": "^3.2.26",
+    "vue-router": "^4.0.12"
+  },
   "devDependencies": {
+    "@vue/compiler-sfc": "^3.2.26",
+    "css-loader": "^6.5.1",
     "html-webpack-plugin": "^5.5.0",
+    "less-loader": "^10.2.0",
+    "style-loader": "^3.3.1",
+    "vue-loader": "^17.0.0",
     "webpack": "^5.65.0",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.7.1"
