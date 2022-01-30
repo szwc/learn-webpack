@@ -1,4 +1,5 @@
 <script>
+  import _ from 'lodash'
 export default {
   name: "listPage",
   data() {
@@ -10,6 +11,9 @@ export default {
       ],
     };
   },
+  mounted() {
+    console.log('list vue lodash',_);
+  },
 };
 </script>
 
@@ -17,6 +21,9 @@ export default {
   <ul>
     <li v-for="item in list" :key="item.id">{{ item.name }}</li>
   </ul>
+  <div>
+    <img src="../image/1.jpeg" alt="">
+  </div>
 </template>
 
 <style>
