@@ -9,6 +9,7 @@ export default {
   },
   setup(props) {
     const editVal = ref("");
+    let count = ref(0);
     const todoList = ref([{ value: "abc", status: false }]);
 
     const addItem = (val) => {
@@ -19,12 +20,11 @@ export default {
       todoList.push(item);
     };
 
-    // onMounted(getUserRepositories); // 在 `mounted` 时调用 `getUserRepositories`
-
     return {
       editVal,
       addItem,
       todoList,
+      count,
     };
   },
   // 组件的“其余部分”

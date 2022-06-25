@@ -13,54 +13,43 @@
     <div>{{getDoneNum}}</div>
  </template>
   <script>
-  import { defineComponent, ref } from 'vue';
+  import { defineComponent, ref,computed } from 'vue';
   import todolistSet from "./todoList.js"
+  console.log('todolistSet',todolistSet);
   export default defineComponent({
       data(){
         return {
-            todoList:[]
+            // todoList:[]
         }
       },
     setup() {
-    // //     const {
-    // //   editVal,
-    // //   addItem,
-    // //   todoList,
-    // // } = todolistSet
-    // return {
-    //         editVal,
-    //   addItem,
-    //   todoList,
-    //     }
-    const {addItem} = todolistSet
-      const value = ref('');
-      const list = ref([])
-      return {
-        editVal:value,
-        todoList:list
+      const editVal = ref("");
+      const count = ref(0)
+      const todoList = ref([{ value: "abc", status: false }]);
+
+      const addItem = (val) => {
+          console.log('val',val);
+          console.log('editVal',editVal);
+          let value = editVal.value
+        let item = {
+          value: value,
+          status: false,
+        };
+        todoList.value.push(item);
       };
-        
+      let getDoneNum = computed(()=>todoList.value.filter(item=>item.status==true).length)
+
+      return {
+        editVal,
+        addItem,
+        todoList,
+        getDoneNum,
+        count
+      };
     },
-    methods: {
-        addItem(item){
-            // console.log('todolist',this.addItem('aa'));
-            console.log('value',this.editVal);
-            if(!this.editVal){
-                console.log('请输入待办事项');
-                return
-            }
-            this.todoList.push({
-                value:this.editVal,
-                status:false
-            })
-            this.editVal = ''
-        }
+    mounted() {
+      console.log('count',this.count)
     },
-    computed:{
-        getDoneNum(){
-            return this.todoList.filter(item=>item.status).length
-        }
-    }
   });
   </script>
   <style>

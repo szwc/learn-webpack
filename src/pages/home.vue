@@ -1,21 +1,29 @@
 <script>
 import _ from 'lodash'
+import {reactive} from 'vue'
+import CommonTitle from '../components/title.vue'
+console.log('commontitle',CommonTitle);
 export default {
   name: "home",
-  data() {
+  setup(props) {
+    const data = reactive({
+      name:'abc'
+    })
     return {
-      greeting: "home",
-    };
+      data
+    }
   },
   mounted() {
-    console.log('home vue lodash',_);
+    
   },
 };
 </script>
 
 <template>
-  <p class="greeting">{{ greeting }}</p>
+  <p class="greeting">{{ data.name }}</p>
+  <CommonTitle :title="home"></CommonTitle>
   <img src="../image/carrot.jpeg" alt="">
+  
 </template>
 
 <style>
